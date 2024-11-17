@@ -143,4 +143,4 @@ cython_debug/
 
 #DS files
 
-*/.DS_Store
+*.DS_Store
