@@ -1,8 +1,10 @@
 #include <iostream>
+#include <chrono>
 #include "FrogPuzzle.h"
 
 using std::cout;
 using std::endl;
+using namespace std::chrono;
 
 /*
    We are looking at the game Frog Leap puzzle
@@ -34,7 +36,16 @@ using std::endl;
 int main(int argc, char const* argv[])
 {
     FrogPuzzle puzzle1;
+
+    auto start = high_resolution_clock::now();
+
     puzzle1.letFrogsJump();
+
+    auto stop = high_resolution_clock::now();
+    auto duration = duration_cast<milliseconds>(stop - start);
+
+    cout << "Time taken by letFrogsJump: " << duration.count() << " milliseconds" << endl;
+    
     puzzle1.showFrogsJumping();
 
     return 0;
