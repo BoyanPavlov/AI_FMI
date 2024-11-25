@@ -1,12 +1,14 @@
 import math
 
+# Global board state
 board = [None] * 9
 
-WIN_CONDITIONS  = [
-        [0, 1, 2], [3, 4, 5], [6, 7, 8], # Rows
-        [0, 3, 6], [1, 4, 7], [2, 5, 8], # Columns
-        [0, 4, 8], [2, 4, 6]             # Diagonals
-    ]
+# Winning conditions for Tic-Tac-Toe
+WIN_CONDITIONS = [
+    [0, 1, 2], [3, 4, 5], [6, 7, 8],  # Rows
+    [0, 3, 6], [1, 4, 7], [2, 5, 8],  # Columns
+    [0, 4, 8], [2, 4, 6]              # Diagonals
+]
 
 def print_board():
     """Prints the current state of the board."""
@@ -47,17 +49,14 @@ def check_result():
         print("It's a draw!")
 
 def is_game_over(board):
-    """Checks if the game is over and returns True if it is."""
-
+    """Checks if the game is over."""
     for condition in WIN_CONDITIONS:
         if board[condition[0]] == board[condition[1]] == board[condition[2]] and board[condition[0]] is not None:
             return True
-    # Draw condition
-    return all(cell is not None for cell in board)
+    return all(cell is not None for cell in board)  # Draw if board is full
 
 def evaluate_position(board):
     """Evaluates the board and returns a score."""
-
     for condition in WIN_CONDITIONS:
         if board[condition[0]] == board[condition[1]] == board[condition[2]]:
             if board[condition[0]] == 'X':  # AI wins
@@ -77,8 +76,9 @@ def get_children(board, player):
     return children
 
 def minimax(board, depth, alpha, beta, maximizingPlayer):
-    """The minimax function with alpha-beta pruning."""
+    """The minimax function with alpha-beta pruning and corrected bottom cases."""
     if is_game_over(board):
+        # Bottom case evaluation with depth adjustment
         if evaluate_position(board) == 1:  # AI wins
             return 10 - depth
         elif evaluate_position(board) == -1:  # Player wins
@@ -119,7 +119,6 @@ def best_move(board):
                 best_move = i
     return best_move
 
-
 # Main game loop
 def main():
     print("Welcome to Tic-Tac-Toe! You are 'O' and the AI is 'X'.")
@@ -150,7 +149,6 @@ def main():
 
     print("Game over!")
     check_result()
-
 
 if __name__ == "__main__":
     main()
