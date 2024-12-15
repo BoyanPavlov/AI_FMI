@@ -464,6 +464,22 @@ def test_ida_star6(): # there is a difference in the pattern which the alorithm 
                 'left']
     print(temp == expected)
 
+    # 6
+    # 4
+    # 7
+    # 8
+    # 5
+    # 0
+    # 3
+    # 2
+    # 1
+
+#     8
+# -1
+# 8 6 7
+# 2 5 4
+# 3 0 1
+
 
 def tests():
     test_isGoalState1()
