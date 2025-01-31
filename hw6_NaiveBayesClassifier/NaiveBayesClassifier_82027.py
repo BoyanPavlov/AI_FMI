@@ -112,8 +112,7 @@ def calculate_probability(
     
     for j, value in enumerate(feature_row):
         value_index = value_to_index[value]
-        prob += math.log(model[label][j][value_index] + 1)  # Avoid zero probabilities with +1
-        prob -= math.log(sum(model[label][j].values()))  # Normalize
+        prob += math.log(model[label][j][value_index])
     
     return prob
 
